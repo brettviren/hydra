@@ -1,0 +1,49 @@
+## Automatically generated from hydra_server.xml by gsl
+digraph "hydra_server" {
+
+ "start" [shape = "doublecircle"];
+ "start expired" [shape = "Mrecord" style = dashed label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">expired</font></td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "start" -> "start expired";
+ "start expired" -> "start";
+ "start exception" [shape = "Mrecord" style = dashed label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">exception</font></td></tr><tr><td align="left" port="r3">send (error)</td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "start" -> "start exception";
+ "start exception" -> "start";
+ "start hello" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">hello</font></td></tr><tr><td align="left" port="r3">set server identity</td></tr><tr><td align="left" port="r3">send (hello ok)</td></tr></table>>];
+ "start" -> "start hello";
+ "start hello" -> "connected";
+ "start *" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">*</font></td></tr><tr><td align="left" port="r3">signal command invalid</td></tr><tr><td align="left" port="r3">send (error)</td></tr></table>>];
+ "start" -> "start *";
+ "start *" -> "start";
+
+ "connected" [shape = "doublecircle"];
+ "connected expired" [shape = "Mrecord" style = dashed label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">expired</font></td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "connected" -> "connected expired";
+ "connected expired" -> "connected";
+ "connected exception" [shape = "Mrecord" style = dashed label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">exception</font></td></tr><tr><td align="left" port="r3">send (error)</td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "connected" -> "connected exception";
+ "connected exception" -> "connected";
+ "connected *" [shape = "Mrecord" style = dashed label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">*</font></td></tr><tr><td align="left" port="r3">signal command invalid</td></tr><tr><td align="left" port="r3">send (error)</td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "connected" -> "connected *";
+ "connected *" -> "connected";
+ "connected next older" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">next older</font></td></tr><tr><td align="left" port="r3">fetch next older post</td></tr><tr><td align="left" port="r3">send (next ok)</td></tr></table>>];
+ "connected" -> "connected next older";
+ "connected next older" -> "connected";
+ "connected next newer" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">next newer</font></td></tr><tr><td align="left" port="r3">fetch next newer post</td></tr><tr><td align="left" port="r3">send (next ok)</td></tr></table>>];
+ "connected" -> "connected next newer";
+ "connected next newer" -> "connected";
+ "connected no such post" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">no such post</font></td></tr><tr><td align="left" port="r3">send (next empty)</td></tr></table>>];
+ "connected" -> "connected no such post";
+ "connected no such post" -> "connected";
+ "connected meta" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">meta</font></td></tr><tr><td align="left" port="r3">fetch post metadata</td></tr><tr><td align="left" port="r3">send (meta ok)</td></tr></table>>];
+ "connected" -> "connected meta";
+ "connected meta" -> "connected";
+ "connected chunk" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">chunk</font></td></tr><tr><td align="left" port="r3">fetch post content chunk</td></tr><tr><td align="left" port="r3">send (chunk ok)</td></tr></table>>];
+ "connected" -> "connected chunk";
+ "connected chunk" -> "connected";
+ "connected ping" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">ping</font></td></tr><tr><td align="left" port="r3">send (ping ok)</td></tr></table>>];
+ "connected" -> "connected ping";
+ "connected ping" -> "connected";
+ "connected goodbye" [shape = "Mrecord" style = solid label = <<table border="0" cellborder="0" cellpadding="3" bgcolor="white"><tr><td bgcolor="black" align="center" colspan="2"><font color="white">goodbye</font></td></tr><tr><td align="left" port="r3">send (goodbye ok)</td></tr><tr><td align="left" port="r3">terminate</td></tr></table>>];
+ "connected" -> "connected goodbye";
+ "connected goodbye" -> "connected";
+}

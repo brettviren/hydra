@@ -463,7 +463,7 @@ hydra_client_test (bool verbose)
     hydra_client_t *client = hydra_client_new ();
     assert (client);
     int rc = hydra_client_connect (client, "ipc://@/hydra", 500);
-    assert (rc = 0);
+    assert (rc == 0);
 //     int rc = hydra_client_fetch (client, HYDRA_PROTO_FETCH_RESET);
 //     assert (rc == -1);
     hydra_client_destroy (&client);

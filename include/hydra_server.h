@@ -10,12 +10,12 @@
      * The XML model used for this code generation: hydra_server.xml, or
      * The code generation script that built this file: zproto_server_c
     ************************************************************************
-    Copyright (c) the Contributors as noted in the AUTHORS file.       
-    This file is part of zbroker, the ZeroMQ broker project.           
-                                                                       
+    Copyright (c) the Contributors as noted in the AUTHORS file.
+    This file is part of zbroker, the ZeroMQ broker project.
+
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
-    file, You can obtain one at http://mozilla.org/MPL/2.0/.           
+    file, You can obtain one at http://mozilla.org/MPL/2.0/.
     =========================================================================
 */
 
@@ -44,7 +44,7 @@ extern "C" {
 //      zstr_send (hydra_server, "VERBOSE");
 //
 //  Bind hydra_server to specified endpoint. TCP endpoints may specify
-//  the port number as "*" to aquire an ephemeral port:
+//  the port number as "*" to acquire an ephemeral port:
 //
 //      zstr_sendx (hydra_server, "BIND", endpoint, NULL);
 //

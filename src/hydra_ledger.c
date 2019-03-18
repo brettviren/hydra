@@ -133,7 +133,7 @@ hydra_ledger_load (hydra_ledger_t *self)
     uint index;
     for (index = 0; files [index]; index++) {
         zfile_t *file = files [index];
-        char *filename = zfile_filename (file, NULL);
+        char *filename = (char*)zfile_filename (file, NULL);
         assert (memcmp (filename, "posts/", 6) == 0);
         filename += 6;
         hydra_post_t *post = hydra_post_load (filename);

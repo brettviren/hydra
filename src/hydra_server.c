@@ -54,6 +54,7 @@ struct _server_t {
 struct _client_t {
     server_t *server;           //  Reference to parent server
     hydra_proto_t *message;     //  Message from and to client
+    uint unique_id;             /* Client identifier */
     hydra_ledger_t *ledger;     //  Posts ledger, same as server ledger
     hydra_post_t *post;         //  Current post we're sending
 };
@@ -132,6 +133,11 @@ server_method (server_t *self, const char *method, zmsg_t *msg)
         assert (false);
     }
     return reply;
+}
+
+static void
+server_configuration (server_t *self, zconfig_t *config)
+{
 }
 
 static zmsg_t *
